@@ -21,12 +21,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rota Raiz
+# Root Route
 @app.get("/")
 def raiz():
     return {"Task2": "API"}
 
-# Criar modelo
+# Create Model
 class User(BaseModel):
     id: int
     name: str
@@ -35,19 +35,19 @@ class User(BaseModel):
     gender: str
     nationality: str
     
-# Criar base de dados
+# Create Database
 data_base = [
     User(id=1, name="Guilherme Pereira", email="guilhermesccp01@hotmail.com", password="1234Mudar#", gender="Male", nationality="Brazilian"),
     User(id=2, name="User Test", email="prontoja@gmail.com", password="test123*", gender="Male", nationality="German")
 ]
 
 
-# Rota Get All
+# Route Get All
 @app.get("/users")
 def get_all_users():
     return data_base
 
-# Rota Get Id
+# Route Get Id
 @app.get("/users/{id_user}")
 def get_user_id(id_user: int):
     for user in data_base:
@@ -56,7 +56,7 @@ def get_user_id(id_user: int):
         
     return {"Status": 404, "Message": "User not found"}
 
-# Rota Insere
+# Route Insert
 @app.post("/users")
 def insert_user(user: User):
     data_base.append(user)
